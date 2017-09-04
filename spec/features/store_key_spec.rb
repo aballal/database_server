@@ -7,6 +7,10 @@ feature 'Storing key and value' do
     post '/set?somekey=somevalue'
   end
 
+  after do
+    DataStore.instance.instance_variable_set(:@data_hash, {})
+  end
+
   it 'can visit the post route /set with a key and value' do
     expect(last_response.status).to eq(200)
   end
