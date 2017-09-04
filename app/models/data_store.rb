@@ -1,4 +1,9 @@
 class DataStore
+
+  def self.instance
+    @data_store ||= DataStore.new
+  end
+
   def initialize
     @data_hash = Hash.new
   end

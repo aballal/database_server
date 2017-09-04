@@ -12,6 +12,6 @@ feature 'Storing key and value' do
   end
 
   it 'can store the key and value in memory' do
-    expect(DataStore.get(:somekey)).to eq('somevalue')
+    expect(DataStore.instance.get('somekey')).to eq('somevalue')
   end
 end
