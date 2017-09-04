@@ -15,5 +15,6 @@ class DatabaseServer < Sinatra::Base
   end
 
   get '/get' do
+    data_store.get(params.values.first)
   end
 end

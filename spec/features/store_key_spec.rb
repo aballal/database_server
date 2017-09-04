@@ -11,11 +11,11 @@ feature 'Storing key and value' do
     DataStore.instance.instance_variable_set(:@data_hash, {})
   end
 
-  it 'can visit the post route /set with a key and value' do
+  scenario 'can visit the post route /set with a key and value' do
     expect(last_response.status).to eq(200)
   end
 
-  it 'can store the key and value in memory' do
+  scenario 'can store the key and value in memory' do
     expect(DataStore.instance.get('somekey')).to eq('somevalue')
   end
 end

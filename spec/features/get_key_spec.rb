@@ -12,7 +12,11 @@ feature 'Getting key value' do
     DataStore.instance.instance_variable_set(:@data_hash, {})
   end
 
-  it 'can visit the get route /set with a key' do
+  scenario 'can visit the get route /get with a key' do
     expect(last_response.status).to eq(200)
+  end
+
+  scenario 'can retrieve the value of the key' do
+    expect(last_response.body).to eq('somevalue')
   end
 end
