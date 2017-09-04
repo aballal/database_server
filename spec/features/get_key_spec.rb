@@ -5,18 +5,25 @@ feature 'Getting key value' do
 
   before do
     get '/set?somekey=somevalue'
-    get '/get?key=somekey'
   end
 
   after do
     DataStore.instance.instance_variable_set(:@data_hash, {})
   end
 
-  scenario 'can visit the get route /get with a key' do
-    expect(last_response.status).to eq(200)
+  context 'key exists' do
+    scenario 'can retrieve the value of the key' do
+      get '/get?key=somekey'
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('somevalue')
+    end
   end
 
-  scenario 'can retrieve the value of the key' do
-    expect(last_response.body).to eq('somevalue')
+  context 'key does not exist' do
+    scenario 'shows a message if key is not found' do
+      get '/get?key=someotherkey'
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('Key not found')
+    end
   end
 end
