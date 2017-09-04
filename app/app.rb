@@ -1,4 +1,5 @@
 require 'sinatra'
+require_relative 'models/data_store'
 
 class DatabaseServer < Sinatra::Base
   set :port, 4000
