@@ -4,7 +4,7 @@ feature 'Getting key value' do
   end
 
   before do
-    post '/set?somekey=somevalue'
+    get '/set?somekey=somevalue'
     get '/get?key=somekey'
   end
 

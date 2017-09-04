@@ -10,7 +10,7 @@ class DatabaseServer < Sinatra::Base
     'Database Server Tech Test'
   end
 
-  post '/set' do
+  get '/set' do
     data_store.set(params.keys.first, params.values.first)
   end
 

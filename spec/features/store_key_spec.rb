@@ -4,7 +4,7 @@ feature 'Storing key and value' do
   end
 
   before do
-    post '/set?somekey=somevalue'
+    get '/set?somekey=somevalue'
   end
 
   after do
