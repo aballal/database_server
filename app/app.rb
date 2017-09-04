@@ -13,4 +13,7 @@ class DatabaseServer < Sinatra::Base
   post '/set' do
     data_store.set(params.keys.first, params.values.first)
   end
+
+  get '/get' do
+  end
 end
