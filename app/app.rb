@@ -11,7 +11,11 @@ class DatabaseServer < Sinatra::Base
   end
 
   get '/set' do
-    data_store.set(params.keys.first, params.values.first)
+    if params.empty?
+      'Params missing'
+    else
+      data_store.set(params.keys.first, params.values.first)
+    end
   end
 
   get '/get' do

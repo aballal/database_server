@@ -3,19 +3,24 @@ feature 'Storing key and value' do
     DatabaseServer
   end
 
-  before do
-    get '/set?somekey=somevalue'
-  end
-
   after do
     DataStore.instance.instance_variable_set(:@data_hash, {})
   end
 
-  scenario 'can visit the post route /set with a key and value' do
-    expect(last_response.status).to eq(200)
+  context 'params exist' do
+    scenario 'can store the key and value in memory' do
+      get '/set?somekey=somevalue'
+      expect(last_response.status).to eq(200)
+      expect(DataStore.instance.get('somekey')).to eq('somevalue')
+      expect(last_response.body).to eq('somevalue')
+    end
   end
 
-  scenario 'can store the key and value in memory' do
-    expect(DataStore.instance.get('somekey')).to eq('somevalue')
+  context 'params are empty' do
+    scenario 'shows a message that params are missing' do
+      get '/set'
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('Params missing')
+    end
   end
 end
